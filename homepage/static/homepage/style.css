@@ -1,0 +1,26 @@
+
+body {
+    background-image: url('https://picsum.photos/1920/1080');
+    background-size: cover;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footer {
+    margin-top: auto;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: left;
+    padding: 10px 0;
+
+}
+
+.purple-tint {
+    background-color: rgba(128, 0, 128, 0.7); /* Adjust the opacity (last value) as needed */
+    padding: 20px; /* Add padding to make the content more visible */
+    border-radius: 10px; /* Optional: Add rounded corners to the container */
+    color: white; /* Optional: Set text color to white for better readability */
+}
+
+ 

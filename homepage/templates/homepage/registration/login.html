@@ -1,0 +1,36 @@
+{% extends "homepage/base.html" %}
+{% block head %}
+<title>
+    login
+</title>
+{% endblock head %}
+
+
+{% block body %}
+
+{% if user.is_authenticated %}
+<div class="container mt-4 purple-tint">
+    <h1>User Already Logged in!</h1>
+</div>
+{% else %}
+<div class="container mt-4">
+    <h2>Login</h2>
+    <form action="{% url 'login_submit' %}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endif %}
+
+    
+    {% endblock body %}

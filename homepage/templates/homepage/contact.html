@@ -1,0 +1,52 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block head %}
+<title>Contact Page</title>
+{% comment %} <!-- Add this script to your contact.html template -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form').on('submit', function(event) {
+            event.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'contact_submit' %}',  // Replace with the actual URL of your view
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.error) {
+                        alert('User already present'); // Display a popup
+                    } else {
+                        window.location.href = '{% url 'success' %}'; // Redirect on success
+                    }
+                }
+            });
+        });
+    });
+</script> {% endcomment %}
+
+{% endblock head %}
+
+{% block body %}
+    <div class="container mt-4 purple-tint">
+        <h2>Contact Us</h2>
+        <form action="{% url 'contact_submit' %}" method="post">
+            {% csrf_token %} 
+            {% comment %} crf token to cross site access prevention {% endcomment %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    {% endblock body %}

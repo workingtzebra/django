@@ -1,0 +1,71 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block head %}
+<title>Login Page</title>
+{% comment %} <!-- Add this script to your contact.html template -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form').on('submit', function(event) {
+            event.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'contact_submit' %}',  // Replace with the actual URL of your view
+                data: $(this).serialize(),
+                success: function(response) {
+                    if (response.error) {
+                        alert('User already present'); // Display a popup
+                    } else {
+                        window.location.href = '{% url 'success' %}'; // Redirect on success
+                    }
+                }
+            });
+        });
+    });
+</script> {% endcomment %}
+
+{% endblock head %}
+
+{% block body %}
+<div id="error-popup" class="popup container mt-4" style="display: none; background-color: rgba(128, 0, 128, 0.7);">
+    <p id="error-message"></p>
+</div>
+
+<script>
+    // JavaScript function to show the error popup with a message
+    function showErrorPopup(message) {
+        var errorPopup = document.getElementById("error-popup");
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerHTML = message;
+        errorPopup.style.display = "block";
+    }
+</script>
+    <div class="container mt-4">
+    {% if error_message %}
+    <script>
+        // Call the JavaScript function to show the error popup
+        showErrorPopup("{{ error_message }}");
+    </script>
+    {% endif %}
+        <h2>Register</h2>
+        <form action="{% url 'register_submit' %}" method="post">
+            {% csrf_token %} 
+            {% comment %} crf token to cross site access prevention {% endcomment %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    {% endblock body %}
