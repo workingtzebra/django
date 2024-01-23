@@ -9,20 +9,21 @@ User = get_user_model()
 
 
 class UserSchema(Schema):
-    id: int
-    username: str
+    # id: int
+    name: str
     email: str
+    password: str
     # Add other fields you want to include
 
 
 api = NinjaAPI()
 
 
-@api.get("/users", response=List[UserSchema], auth=django_auth)
-@login_required
+@api.get("/users")
+@login_required 
 def get_users(request):
     users = User.objects.all()
-    return users
+    return [UserSchema.from_orm(user) for user in users]
 
 
 @api.get("/hello")

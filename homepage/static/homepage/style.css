@@ -1,4 +1,5 @@
 
+
 body {
     background-image: url('https://picsum.photos/1920/1080');
     background-size: cover;
@@ -22,5 +23,3 @@ body {
     border-radius: 10px; /* Optional: Add rounded corners to the container */
     color: white; /* Optional: Set text color to white for better readability */
 }
-
- 

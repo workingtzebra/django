@@ -28,6 +28,7 @@
 {% endblock head %}
 
 {% block body %}
+<div>
     <div class="container mt-4 purple-tint">
         <h2>Contact Us</h2>
         <form action="{% url 'contact_submit' %}" method="post">
@@ -49,4 +50,5 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+</div>
     {% endblock body %}

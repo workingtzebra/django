@@ -28,7 +28,10 @@
                     <a class="nav-link" href="/contact">Contact us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
         </div>
@@ -36,16 +39,20 @@
     {% block body %}
     
     {% endblock body %}
+  <br>
+  <br>
+  <br>
 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <div class="footer">
         <p>Email: workingtzebra@outlook.com</p>
         <p>Name: Omar</p>
         <p>Address: 57, L-Block Inertia Khiyabaan-e-Ameen</p>
         <p>About Us: {% lorem 9 w random %}.</p>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
